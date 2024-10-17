@@ -1,0 +1,13 @@
+function getUserInfo(userId: number): Promise<{ name: string; age: number }> {
+  return fetch(`/api/users/${userId}`)
+    .then(response => response.json())
+    .then(data => {
+      if (data.age === undefined) {
+        throw new Error('Age is missing in the API response');
+      }
+      return {
+        name: data.name,
+        age: data.age
+      };
+    });
+}
