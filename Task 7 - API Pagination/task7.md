@@ -26,22 +26,23 @@
 
 ### 1. Database Indexing:
 
-Ensure that the database is properly indexed on the fields that are commonly queried. This can significantly speed up the retrieval of paginated results.
++ Ensure that the database is properly indexed on the fields that are commonly queried. This can significantly speed up the retrieval of paginated results.
 
 ### 2. Use Cursor-Based Pagination:
 
-Instead of traditional limit and offset, consider implementing cursor-based pagination. This approach uses a unique identifier (like a product ID or timestamp) as a cursor, which can be more efficient for large datasets. It avoids the performance issues that come with large offsets.
-Example cursor-based pagination query:
++ Instead of traditional limit and offset, consider implementing cursor-based pagination. This approach uses a unique identifier (like a product ID or timestamp) as a cursor, which can be more efficient for large datasets. It avoids the performance issues that come with large offsets.
 
-sql
-Copy code
++ Example cursor-based pagination query:
+
+```
 SELECT * FROM products WHERE id > last_cursor_id LIMIT 10;
-Count Total Records:
+```
+### 3. Count Total Records:
 
-Avoid counting total records every time a paginated request is made, as it can be expensive. Instead, maintain a count in a separate table or use approximate counting techniques.
-Lazy Loading and Caching:
++ Avoid counting total records every time a paginated request is made, as it can be expensive. Instead, maintain a count in a separate table or use approximate counting techniques.
+### 4. Lazy Loading and Caching:
 
-Implement lazy loading to fetch data as needed and cache frequently requested pages or results to reduce the load on the database.
-Batch Processing:
++ Implement lazy loading to fetch data as needed and cache frequently requested pages or results to reduce the load on the database.
+### 5. Batch Processing:
 
-If the dataset is exceptionally large, consider breaking the retrieval into smaller batches, processing and returning them as needed to the client.
++ If the dataset is exceptionally large, consider breaking the retrieval into smaller batches, processing and returning them as needed to the client.
