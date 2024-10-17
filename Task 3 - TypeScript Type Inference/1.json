@@ -1,0 +1,10 @@
+function getUserInfo(userId: number): Promise<{ name: string; age: number }> {
+  return fetch(`/api/users/${userId}`)
+    .then(response => response.json())
+    .then(data => {
+      return {
+        name: data.name,
+        age: data.age ?? 0 // Use default value of 0 if age is undefined
+      };
+    });
+}
